@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import { Link } from "react-router-dom";
+import { BsFillHandThumbsUpFill } from 'react-icons/bs'
 
 
 function Popular() {
@@ -37,20 +38,23 @@ function Popular() {
             <Wrapper>
                 <h3>Popular Recipes</h3>
                 <Splide options={{
-                    perPage: 4,
+                    perPage: 3,
                     arrows: false,
-                    gap: '5em',
+                    gap: '3em',
                 }}>
                     {popular.map((recipe) => {
                         return (
                             <SplideSlide key={recipe.id}>
-                                <Card>
+                                <div className="recipe-card">
                                     <Link to={'/recipe/' + recipe.id}>
-                                    <p>{recipe.title}</p>
                                     <img src={recipe.image} alt={recipe.title} />
-                                    <Gradient />
+                                    <div className="recipe-card-info">
+                                        <h4>{recipe.title}</h4>
+                                        <p dangerouslySetInnerHTML={{__html: recipe.summary}}></p>
+                                        <div className="recipe-likes"><BsFillHandThumbsUpFill/> {recipe.aggregateLikes}</div>
+                                    </div>
                                     </Link>
-                                </Card>
+                                </div>
                             </SplideSlide>
                         );
                     })}
@@ -69,49 +73,6 @@ const Wrapper = styled.div`
         margin-bottom: 2rem;
         font-size: 2rem;
     }
-`;
-
-const Card = styled.div`
-    min-height: 15em;
-    border-radius: 2em;
-    overflow: hidden;
-    position: relative;
-
-    img{
-        border-radius: 2em;
-        object-fit: cover;
-        position: absolute;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    p{
-        position: absolute;
-        z-index: 10;
-        left: 50%;
-        bottom: 0%;
-        transform: translate(-50%, 0);
-        color: white;
-        width: 100%;
-        text-align: center;
-        font-size: 1rem;
-        padding: 0 1em;
-        font-weight: 600;
-        height: 40%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-`;
-
-const Gradient = styled.div`
-      z-index: 5;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
-
 `;
 
 
