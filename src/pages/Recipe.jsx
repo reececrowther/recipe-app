@@ -37,6 +37,40 @@ function Recipe() {
                 <h5>{detials.servings} Servings</h5>
             </QuickDetials>
         </QuickDetialsWrapper>
+
+        <Tags>
+        {detials.veryPopular == true &&(
+            <div className="popular-tag">
+                Very Popular
+            </div>
+        )}
+
+        {detials.vegetarian == true &&(
+            <div className="vegetarian-tag">
+                Vegan
+            </div>
+        )}
+
+        {detials.vegan == true &&(
+            <div className="vegan-tag">
+                Vegetarian
+            </div>
+        )}
+
+        {detials.glutenFree == true &&(
+            <div className="glutenFree-tag">
+                Gluten Free
+            </div>
+        )}
+
+        {detials.dairyFree == true &&(
+            <div className="dairyFree-tag">
+                Dairy Free
+            </div>
+        )}
+
+        </Tags>
+
         <div dangerouslySetInnerHTML={{__html: detials.summary}}></div>
     </Wrapper>
     <DetailWrapper>
@@ -87,6 +121,33 @@ const QuickDetials = styled.div`
         color: #e94057;
     }
 `
+const Tags = styled.div`
+    display: flex;
+    margin-bottom: 1em;
+
+    div{
+        margin-right: 1em;
+        border-radius: 20em;
+        color: white;
+        padding: 0.5em 1em;
+        font-size: .8rem;
+    }
+    div.popular-tag{
+        background-color: #e94057;
+    }
+    div.vegan-tag{
+        background-color: #50C878;
+    }
+    div.vegetarian-tag{
+        background-color: #228B22;
+    }
+    div.glutenFree-tag{
+        background-color: #40E0D0;
+    }
+    div.dairyFree-tag{
+        background-color: #FFC300 ;
+    }
+`
 
 const DetailWrapper = styled.div`
     display: flex;
@@ -101,7 +162,7 @@ const DetailWrapper = styled.div`
         line-height: 2rem;
     }
 
-    ul{
+    ul, ol{
         margin-left: 2em;
     }
     li{

@@ -44,20 +44,29 @@ const Grid = styled(motion.div)`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     grid-gap: 3em;
+    justify-items: center;
 `;
 
 const Card = styled.div`
+    display: flex;
+    align-items: center;
+
     img{
         border-radius: 2em;
-        width: 100%;
+        width: 20em;
         height: 100%;
+        object-fit: cover;
     }
     a{
         text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     h4{
         text-align: center;
         padding: 1em;
+        color: black;
     }
 `;
 

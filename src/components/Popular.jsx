@@ -63,6 +63,12 @@ function Popular() {
 
 const Wrapper = styled.div`
     margin: 4rem 0;
+
+    h3{
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
 `;
 
 const Card = styled.div`
