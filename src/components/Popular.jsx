@@ -41,6 +41,16 @@ function Popular() {
                     perPage: 3,
                     arrows: false,
                     gap: '3em',
+                    padding: { left: '1rem', right: '1rem' },
+                    breakpoints: {
+                        1000: {
+                            perPage: 2,
+                        },
+                        600: {
+                            perPage: 1,
+                            gap: '1em',
+                        },
+                    },
                 }}>
                     {popular.map((recipe) => {
                         return (
@@ -51,7 +61,10 @@ function Popular() {
                                     <div className="recipe-card-info">
                                         <h4>{recipe.title}</h4>
                                         <p dangerouslySetInnerHTML={{__html: recipe.summary}}></p>
-                                        <div className="recipe-likes"><BsFillHandThumbsUpFill/> {recipe.aggregateLikes}</div>
+                                        <div className="card-bottom-info">
+                                            <div className="dish-type">{recipe.dishTypes[0]}</div>
+                                            <div className="recipe-likes"><BsFillHandThumbsUpFill/> {recipe.aggregateLikes}</div>
+                                        </div>
                                     </div>
                                     </Link>
                                 </div>
@@ -72,6 +85,10 @@ const Wrapper = styled.div`
         text-align: center;
         margin-bottom: 2rem;
         font-size: 2rem;
+    }
+
+    .splide__slide:nth-child(odd){
+        margin-top: 1em;
     }
 `;
 

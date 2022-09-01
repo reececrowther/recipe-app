@@ -41,6 +41,20 @@ function Veggie(){
                     perPage: 4,
                     arrows: false,
                     gap: '2em',
+                    padding: { left: '1rem', right: '1rem' },
+                    breakpoints: {
+                        1000: {
+                            perPage: 3,
+                        },
+                        840: {
+                            perPage: 2,
+                            gap: '1em',
+                        },
+                        550: {
+                            perPage: 1,
+                            gap: '1em',
+                        },
+                    },
                 }}>
                     {veggie.map((recipe) => {
                         return (
@@ -66,13 +80,40 @@ function Veggie(){
 
 
 const Wrapper = styled.div`
-    margin: 4rem 0;
+    padding: 4rem 0;
+    position: relative;
+    
 
     h3{
         text-align: center;
         margin-bottom: 2rem;
         font-size: 2rem;
     }
+    ::before{
+        content: "";
+        position: absolute;
+        z-index: -1;
+        border-radius: 1em;
+        background: #BDDCA8;
+        width: 100%;
+        height: 50%;
+        top: 45%;
+        left: -2em;
+        padding: 0 2em;
+    }
+
+    .splide__pagination__page{
+        background: #6aad3e !important;
+        margin: 5px;
+    }
+
+    .splide__pagination__page.is-active{
+        background: #398002 !important;
+        width: 20px;
+        border-radius: 20px;
+        opacity: 1;
+    }
+    
 `;
 
 

@@ -67,10 +67,11 @@ const FormStyle = styled.form`
         top: -10px;
         color: #e94057;
         font-size: 12px;
-        background: white;
-        padding: 0 4px;
+        background: #FAFAFA;
+        padding: 2px 9px;
         border-radius: .3em;
         font-weight: 700;
+        
     }
 
     input::placeholder{
