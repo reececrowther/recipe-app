@@ -8,20 +8,33 @@ import React from 'react'
 
 function Recipe() {
 
-    const [detials, setDetials] = useState({});
+    const [detials, setDetials] = useState([]);
+    const [intructionsDetials, setIntructionsDetials] = useState([]);
     const [activeTab, setActiveTab] = useState('instructions');
     let params = useParams();
 
 
     const fetchDetails = async () => {
-        const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`);
-        const detialsData = await data.json();
-        setDetials(detialsData);
+
+            const data = await fetch(`https://api.spoonacular.com/recipes/${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`);
+            const detialsData = await data.json();
+            setDetials(detialsData); 
+
+    }
+
+    const analyzeInstructions = async () => {
+
+            const inttructionsData = await fetch(`https://api.spoonacular.com/recipes/${params.name}/analyzedInstructions?apiKey=${process.env.REACT_APP_API_KEY}`);
+            const intructionsDetials = await inttructionsData.json();
+            setIntructionsDetials(intructionsDetials); 
+        
     }
 
     useEffect(() => {
         fetchDetails();
+        analyzeInstructions();
     }, [params.name]);
+
 
   return (
         <>
@@ -39,31 +52,31 @@ function Recipe() {
         </QuickDetialsWrapper>
 
         <Tags>
-        {detials.veryPopular == true &&(
+        {detials.veryPopular === true &&(
             <div className="popular-tag">
                 Very Popular
             </div>
         )}
 
-        {detials.vegetarian == true &&(
+        {detials.vegetarian === true &&(
             <div className="vegetarian-tag">
                 Vegan
             </div>
         )}
 
-        {detials.vegan == true &&(
+        {detials.vegan === true &&(
             <div className="vegan-tag">
                 Vegetarian
             </div>
         )}
 
-        {detials.glutenFree == true &&(
+        {detials.glutenFree === true &&(
             <div className="glutenFree-tag">
                 Gluten Free
             </div>
         )}
 
-        {detials.dairyFree == true &&(
+        {detials.dairyFree === true &&(
             <div className="dairyFree-tag">
                 Dairy Free
             </div>
@@ -74,17 +87,53 @@ function Recipe() {
         <div dangerouslySetInnerHTML={{__html: detials.summary}}></div>
     </Wrapper>
     <DetailWrapper>
-        <div>
+        <ImgCon>
             <img src={detials.image} alt={detials.title} />
-        </div>
+        </ImgCon>
         <Info>
             <Button className={activeTab === 'instructions' ? 'active' : ''} onClick={() => setActiveTab("instructions")}>Instructions</Button>
             <Button className={activeTab === 'ingredients' ? 'active' : ''} onClick={() => setActiveTab("ingredients")}>Ingredients</Button>
             {activeTab === 'instructions' && (
             <div>
-                <div dangerouslySetInnerHTML={{__html: detials.instructions}}></div>
+                {intructionsDetials.length > 0 && (
+                    <div>
+                        {intructionsDetials.map((instruction) => {
+                        return (
+                            <ol>{instruction.steps.map((step) => {
+                                return(
+                                    <li key={step.number}>
+                                        {step.step}
+                                        {step.ingredients.length > 0 && (
+                                            <IngWrapper>{step.ingredients.map((ing) => {
+                                                return(
+                                                    <div>
+                                                        {ing.image != '' && (
+                                                            <IngCard>
+                                                                <img src={`https://spoonacular.com/cdn/ingredients_100x100/${ing.image}`}/>
+                                                                <h5>{ing.name}</h5>
+                                                            </IngCard>
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}</IngWrapper>
+                                        )}
+                                    </li>
+                                );
+                            })}
+                            </ol>
+                        );
+                        })}
+                    </div>
+                )} 
+                {intructionsDetials.length === 0 && (
+                    <div dangerouslySetInnerHTML={{__html: detials.instructions}}></div>
+                )}
+
+                {/*  */}
+                
             </div>
             )}
+            
             {activeTab === 'ingredients' && (
             <ul>
                 {detials.extendedIngredients.map((ingredient) => 
@@ -152,6 +201,7 @@ const Tags = styled.div`
 const DetailWrapper = styled.div`
     display: flex;
     margin: 5em 0;
+   
 
     h2{
         margin-bottom: 1em;
@@ -174,6 +224,15 @@ const DetailWrapper = styled.div`
     }
 `;
 
+const ImgCon = styled.div`
+    position: relative;
+
+    img{
+        position: sticky;
+        top: 5%;
+    }
+`;
+
 const Button = styled.button`
     padding: 1em 2em;
     color: #313131;
@@ -188,6 +247,24 @@ const Button = styled.button`
 
 const Info = styled.div`
     margin-left: 2em;
+`;
+
+const IngWrapper = styled.div`
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-bottom: 1em;
+`;
+
+const IngCard = styled.div`
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    padding: .5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: .3em;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `;
 
 export default Recipe

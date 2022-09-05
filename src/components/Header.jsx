@@ -7,12 +7,17 @@ import React from 'react'
 
 function Header() {
   return (
+    <>
+    <span className='shapedividers_com-8821'></span>
     <Nav>
         <GiForkKnifeSpoon/>
         <Logo to={'/'}>Recipe App</Logo>
     </Nav>
+    </>
   )
 }
+
+
 
 const Logo = styled(Link)`
     text-decoration: none;
@@ -23,7 +28,7 @@ const Logo = styled(Link)`
 `;
 
 const Nav = styled.div`
-    padding: 4em 0;
+    padding: 3em 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;

@@ -46,7 +46,7 @@ const SLink = styled(NavLink)`
     cursor: pointer;
     font-size: 0.8rem;
     transition: all .5s;
-    border: 4px solid;
+    border: 4px solid transparent;
 
     :hover{
         border: 4px solid #f27121;
