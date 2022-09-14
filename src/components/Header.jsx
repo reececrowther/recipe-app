@@ -21,20 +21,22 @@ function Header() {
 
 const Logo = styled(Link)`
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
     font-family: 'Dancing Script', cursive;
-    color: black;
+    color: white;
 `;
 
 const Nav = styled.div`
     padding: 3em 0;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 
     svg{
         font-size: 2em;
+        color: white;
+        margin-right: 10px;
     }
 `
 

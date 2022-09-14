@@ -46,21 +46,21 @@ const FormStyle = styled.form`
     position: relative;
 
     input{
-        border: none;
-        background: linear-gradient(35deg, #494949, #313131);
+        background: linear-gradient(35deg, #000000, #313131);
         font-size: 1.2rem;
         color: white;
         padding: 1em 2em;
-        border: none;
         border-radius: 1em;
         outline: none;
         width: 100%;
         transition: all .3s;
-        border: 2px solid transparent;
+        border: 2px solid transparent; 
+        background-size: 105%;
+        background-position: center;
     }
 
     input:focus{
-        border: 2px solid #e94057;
+        border: 2px solid white;
     }
 
     input:focus + label, .filled{

@@ -39,7 +39,7 @@ const SLink = styled(NavLink)`
     border-radius: 50%;
     margin-right: 2em;
     text-decoration: none;
-    background: linear-gradient(35deg, #494949, #313131);
+    background: linear-gradient(35deg, #000000, #313131);
     width: 8.5em;
     height: 8.5em;
     color: white;
@@ -47,6 +47,8 @@ const SLink = styled(NavLink)`
     font-size: 0.8rem;
     transition: all .5s;
     border: 4px solid transparent;
+    background-size: 110%;
+    background-position: center;
 
     :hover{
         border: 4px solid #f27121;
@@ -58,6 +60,8 @@ const SLink = styled(NavLink)`
 
     &.active{
         background: linear-gradient(to right, #f27121, #e94057);
+        background-size: 110%;
+        background-position: center;
     }
 
     h4{

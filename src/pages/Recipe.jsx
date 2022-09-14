@@ -84,12 +84,13 @@ function Recipe() {
 
         </Tags>
 
-        <div dangerouslySetInnerHTML={{__html: detials.summary}}></div>
+            <IntroWrapper>
+                <img src={detials.image} alt={detials.title} />
+                <div dangerouslySetInnerHTML={{__html: detials.summary}}></div>
+            </IntroWrapper>
+        
     </Wrapper>
     <DetailWrapper>
-        <ImgCon>
-            <img src={detials.image} alt={detials.title} />
-        </ImgCon>
         <Info>
             <Button className={activeTab === 'instructions' ? 'active' : ''} onClick={() => setActiveTab("instructions")}>Instructions</Button>
             <Button className={activeTab === 'ingredients' ? 'active' : ''} onClick={() => setActiveTab("ingredients")}>Ingredients</Button>
@@ -107,9 +108,9 @@ function Recipe() {
                                             <IngWrapper>{step.ingredients.map((ing) => {
                                                 return(
                                                     <div>
-                                                        {ing.image != '' && (
+                                                        {ing.image !== '' && (
                                                             <IngCard>
-                                                                <img src={`https://spoonacular.com/cdn/ingredients_100x100/${ing.image}`}/>
+                                                                <img src={`https://spoonacular.com/cdn/ingredients_100x100/${ing.image}`} alt={ing.name}/>
                                                                 <h5>{ing.name}</h5>
                                                             </IngCard>
                                                         )}
@@ -200,7 +201,7 @@ const Tags = styled.div`
 
 const DetailWrapper = styled.div`
     display: flex;
-    margin: 5em 0;
+    margin: 10em 0;
    
 
     h2{
@@ -224,12 +225,23 @@ const DetailWrapper = styled.div`
     }
 `;
 
-const ImgCon = styled.div`
+const IntroWrapper = styled.div`
     position: relative;
 
     img{
-        position: sticky;
-        top: 5%;
+        border-radius: 20px;
+        box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+    }
+
+    div{
+        position: absolute;
+        box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+        background-color: white;
+        top: 50%;
+        right: 0;
+        width: 70%;
+        border-radius: 1em;
+        padding: 2em;
     }
 `;
 
@@ -254,6 +266,7 @@ const IngWrapper = styled.div`
     align-items: flex-end;
     justify-content: flex-start;
     margin-bottom: 1em;
+    flex-wrap: wrap;
 `;
 
 const IngCard = styled.div`
