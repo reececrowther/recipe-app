@@ -151,12 +151,20 @@ function Recipe() {
 const Wrapper = styled.div`
     h2{
         margin: 1em 0;
+
+        @media (max-width: 1024px) {
+            text-align: center;
+        }
     }
 `
 
 const QuickDetialsWrapper = styled.div`
     display: flex;
     align-items: center;
+    
+    @media (max-width: 1024px) {
+        justify-content: center;
+    }
 `
 
 const QuickDetials = styled.div`
@@ -164,6 +172,10 @@ const QuickDetials = styled.div`
     align-items: center;
     margin-right: 1em;
     margin-bottom: 1em;
+
+    @media (max-width: 1024px) {
+        justify-content: center;
+    }
 
     svg{
         margin-right: .5em;
@@ -174,6 +186,10 @@ const QuickDetials = styled.div`
 const Tags = styled.div`
     display: flex;
     margin-bottom: 1em;
+
+    @media (max-width: 1024px) {
+        justify-content: center;
+    }
 
     div{
         margin-right: 1em;
@@ -202,6 +218,10 @@ const Tags = styled.div`
 const DetailWrapper = styled.div`
     display: flex;
     margin: 10em 0;
+
+    @media (max-width: 1024px) {
+        margin: 2em 0;
+    }
    
 
     h2{
@@ -228,9 +248,24 @@ const DetailWrapper = styled.div`
 const IntroWrapper = styled.div`
     position: relative;
 
+    @media (max-width: 1024px) {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
     img{
         border-radius: 20px;
         box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
+        max-width: 600px;
+
+        @media (max-width: 1024px) {
+            margin: auto;
+        }
+
+        @media (max-width: 620px) {
+            width: 100%;
+        }
     }
 
     div{
@@ -242,6 +277,13 @@ const IntroWrapper = styled.div`
         width: 70%;
         border-radius: 1em;
         padding: 2em;
+
+        @media (max-width: 1024px) {
+            position: relative;
+            width: 100%;
+        }
+
+
     }
 `;
 

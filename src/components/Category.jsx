@@ -29,6 +29,7 @@ const List = styled.div`
     justify-content: center;
     margin-top: 3rem;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
 `;
 
 const SLink = styled(NavLink)`
@@ -50,6 +51,12 @@ const SLink = styled(NavLink)`
     background-size: 110%;
     background-position: center;
 
+    @media (max-width: 630px){
+        width: 6.5em;
+        height: 6.5em;
+        margin-top: 2em;
+    }
+
     :hover{
         border: 4px solid #f27121;
         
@@ -66,12 +73,22 @@ const SLink = styled(NavLink)`
 
     h4{
         font-size: 1rem;
+
+        @media (max-width: 630px){
+            font-size: .9em;
+        }
     }
 
     img{
         width: 7em;
         height: 7em;
         margin-top: -4em;
+
+        @media (max-width: 630px){
+            width: 5em;
+            height: 5em;
+        }
+
     }
 `;
  

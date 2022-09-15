@@ -45,6 +45,10 @@ const FormStyle = styled.form`
     margin: 0 10em;
     position: relative;
 
+    @media (max-width: 800px) {
+        margin: 0 2em;
+    }
+
     input{
         background: linear-gradient(35deg, #000000, #313131);
         font-size: 1.2rem;
@@ -110,6 +114,7 @@ const FormStyle = styled.form`
         width: 100%;
         z-index: -1;
     }
+    
 `;
 
 
